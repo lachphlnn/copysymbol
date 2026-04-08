@@ -1,20 +1,66 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
   <title>기호 복사 사이트</title>
+  <style>
+    body { font-family: Arial; text-align: center; }
+    h2 { margin-top: 30px; }
+    button {
+      font-size: 20px;
+      margin: 5px;
+      padding: 10px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-  <h1>기호 복사</h1>
 
-  <button onclick="copyText('α')">α</button>
-  <button onclick="copyText('β')">β</button>
-  <button onclick="copyText('°')">°</button>
+<h1>📋 기호 복사</h1>
 
-  <script>
-    function copyText(text) {
-      navigator.clipboard.writeText(text);
-      alert(text + " 복사됨!");
-    }
-  </script>
+<h2>윗첨자</h2>
+<div id="superscript"></div>
+
+<h2>아랫첨자</h2>
+<div id="subscript"></div>
+
+<h2>그리스 문자</h2>
+<div id="greek"></div>
+
+<script>
+function copyText(text) {
+  navigator.clipboard.writeText(text);
+  alert(text + " 복사됨!");
+}
+
+function createButtons(list, elementId) {
+  const container = document.getElementById(elementId);
+  list.forEach(char => {
+    const btn = document.createElement("button");
+    btn.textContent = char;
+    btn.onclick = () => copyText(char);
+    container.appendChild(btn);
+  });
+}
+
+// 윗첨자
+createButtons(
+  ["⁰","¹","²","³","⁴","⁵","⁶","⁷","⁸","⁹"],
+  "superscript"
+);
+
+// 아랫첨자
+createButtons(
+  ["₀","₁","₂","₃","₄","₅","₆","₇","₈","₉"],
+  "subscript"
+);
+
+// 그리스 문자 (자주 쓰는 것)
+createButtons(
+  ["α","β","γ","δ","ε","θ","λ","μ","π","σ","Ω"],
+  "greek"
+);
+</script>
+
 </body>
 </html>
