@@ -99,7 +99,15 @@ function createButtons(list, elementId) {
   list.forEach(char => {
     const btn = document.createElement("button");
     btn.textContent = char;
-    btn.onclick = () => addText(char);
+
+    // 👇 여기 수정됨
+    btn.onclick = () => copyText(char);
+
+    btn.oncontextmenu = (e) => {
+      e.preventDefault();
+      addText(char);
+    };
+
     container.appendChild(btn);
   });
 }
