@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>기호 복사 사이트</title>
+</head>
+<body>
+  <h1>기호 복사</h1>
+
+  <button onclick="copyText('α')">α</button>
+  <button onclick="copyText('β')">β</button>
+  <button onclick="copyText('°')">°</button>
+
+  <script>
+    function copyText(text) {
+      navigator.clipboard.writeText(text);
+      alert(text + " 복사됨!");
+    }
+  </script>
+</body>
+</html>
