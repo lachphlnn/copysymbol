@@ -12,6 +12,28 @@
       padding: 10px;
       cursor: pointer;
     }
+    #toast {
+  visibility: hidden;
+  min-width: 120px;
+  background-color: #333;
+  color: white;
+  text-align: center;
+  border-radius: 20px;
+  padding: 10px;
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.3s, bottom 0.3s;
+}
+
+#toast.show {
+  visibility: visible;
+  opacity: 1;
+  bottom: 50px;
+}
   </style>
 </head>
 <body>
@@ -30,7 +52,14 @@
 <script>
 function copyText(text) {
   navigator.clipboard.writeText(text);
-  alert(text + " 복사됨!");
+
+  const toast = document.getElementById("toast");
+  toast.textContent = text + " 복사됨!";
+  toast.classList.add("show");
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 1500);
 }
 
 function createButtons(list, elementId) {
@@ -57,10 +86,12 @@ createButtons(
 
 // 그리스 문자 (자주 쓰는 것)
 createButtons(
-  ["α","β","γ","δ","ε","θ","λ","μ","π","σ","Ω"],
+  ["α","β","γ","Δ","δ","ε","θ","λ","μ","π","σ","Ω"],
   "greek"
 );
 </script>
-
+  
+<div id="toast">복사됨!</div>
+  
 </body>
 </html>
